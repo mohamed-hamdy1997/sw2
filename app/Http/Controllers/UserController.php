@@ -81,5 +81,11 @@ class UserController extends Controller
         return view('admin/addUser');
     }
 
+    //    view user's posts
+    public function userPosts($id)
+    {
+        $posts =   Post::orderBy('created_at','desc')->where('user_id',$id)->paginate(5);
+        return view('/posts.userPosts' , compact('posts'));
+    }
 
 }
