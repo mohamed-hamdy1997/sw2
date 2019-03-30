@@ -23,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //user
 
 Route::get('/users', 'UserController@index');
+Route::get('/adduser', 'UserController@viewAdd');
+Route::post('/adduser', 'UserController@addUser');
+Route::get('users/{id}', 'UserController@destroy');
 
 
 //posts
@@ -40,3 +43,5 @@ Route::post('/create', 'PostsController@store');
 Route::post('/posts/{id}', 'PostsController@update');
 
 Route::get('/posts/{id}/destroy', 'PostsController@destroy');
+
+Route::get('/posts/{id}/view', 'PostsController@viewPost');
