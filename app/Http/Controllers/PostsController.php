@@ -231,6 +231,29 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post =   Post::findOrFail($id);
+        if((auth()->user()->id == $post->user_id) ||  auth()->user()->type == 'admin'){
+
+            if($post->post_image){
+                Storage::delete('/public/uploaded/images/'.$post->post_image);
+
+            }
+            if($post->post_video){
+                Storage::delete('/public/uploaded/videos/'.$post->post_video);
+
+            }
+            if($post->post_file){
+                Storage::delete('/public/uploaded/files/'.$post->post_file);
+
+            }
+
+            $post->delete() ;
+
+            return redirect('/posts')->with('success', 'Done successfully');
+        }else{
+            return redirect('/posts')->with('error','Unauthorized');
+
+        }
+
     }
 }

@@ -38,3 +38,5 @@ Route::get('/create', 'PostsController@create');
 Route::post('/create', 'PostsController@store');
 
 Route::post('/posts/{id}', 'PostsController@update');
+
+Route::get('/posts/{id}/destroy', 'PostsController@destroy');

@@ -34,7 +34,7 @@
 
                         <div style="  display:inline-block">
                             <a href="/posts/{{$post->id}}/edit"><i class="fa fa-edit"></i></a>
-                            <a href="#"onclick="if(!confirm('Do you Delete This Post ?')) return false"><i class="fa fa-trash"></i></a>
+                            <a href="{{ action('PostsController@destroy',$post->id),'/destroy' }}"onclick="if(!confirm('Do you Delete This Post ?')) return false"><i class="fa fa-trash"></i></a>
                         </div>
                     </div>
 
