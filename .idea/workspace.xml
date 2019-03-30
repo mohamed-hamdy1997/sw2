@@ -48,7 +48,10 @@
         <entry file="file://$PROJECT_DIR$/resources/views/posts/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="538">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
+              <folding>
+                <element signature="e#1845#1873#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="425">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -66,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/posts/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="538">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+              <caret line="56" selection-start-line="56" selection-end-line="56" />
             </state>
           </provider>
         </entry>
@@ -76,6 +79,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="538">
               <caret line="48" selection-start-line="48" selection-end-line="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="538">
+              <caret line="230" column="7" selection-start-line="230" selection-start-column="7" selection-end-line="230" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -284,7 +296,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553957711928</updated>
-      <workItem from="1553957713380" duration="1180000" />
+      <workItem from="1553957713380" duration="829000" />
     </task>
     <task id="LOCAL-00001" summary="create function create post and create function store post and create function edit post  and create function update post">
       <created>1553958565201</created>
@@ -297,10 +309,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1180000" />
+    <option name="totallyTimeSpent" value="829000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1040" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1040" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
@@ -338,7 +350,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/posts/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
@@ -352,7 +364,10 @@
     <entry file="file://$PROJECT_DIR$/resources/views/posts/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="e#1845#1873#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -365,8 +380,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="425">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
