@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -255,5 +256,11 @@ class PostsController extends Controller
 
         }
 
+    }
+    //    view post
+    public function viewPost($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts/viewPost' , compact('post'));
     }
 }
