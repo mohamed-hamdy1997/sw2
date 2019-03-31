@@ -23,9 +23,7 @@
                                     @endif
 
                                     <span class="label label-danger">created at : {{$post->created_at}}  </span>
-                                    {{--     <span class="label label-info">  by {{$post->user->name}}</span>--}}
-                                    <span class="label label-info">  by {{$post->post_owner}}</span>
-
+                                    <span class="label label-info">  by {{$post->user->name}}</span>
                                     <a href="/posts/{{$post->id}}/view" class="float-right">View Post</a>
 
                                 </div>
@@ -56,8 +54,3 @@
     @endif
 
 @endsection
-
-
-
-
-

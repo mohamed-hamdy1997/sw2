@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -52,7 +53,7 @@ class PostsController extends Controller
                 'title' => 'required',
                 'body' => 'required',
                 'post_image' => 'image|nullable|max:6024 | mimes:jpg,png,jpeg,svg',
-                'post_video' => 'nullable | max:20000 |mimes:mp4,3pg,flv,mkv,weba',
+                'post_video' => 'nullable |max:20000|mimes:mp4,3pg,flv,mkv,weba',
                 'post_file' => 'nullable|max:8024 | mimes:pdf,txt,docx,doc,pptx,ppt,xls '
             ]);
 
@@ -113,12 +114,7 @@ class PostsController extends Controller
             return redirect('/login')->with('Unauthorized' , 'Please Login First');
         }
     }
-
-//
-//    public function show(Post $post)
-//    {
-//        return new PostResource($post);
-//    }
+    
 
     /**
      * Show the form for editing the specified resource.
