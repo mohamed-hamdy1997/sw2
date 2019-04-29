@@ -53,7 +53,7 @@ class UserController extends Controller
 
             $users =   User::paginate(5);
 //            return view('admin/users' , compact('users'))->with('User Added');
-            return redirect('/users')->with('success','User Added');
+            return redirect('/users-deatails')->with('success','User Added');
         }else{
             return with('error','Unauthorized');
         }
@@ -65,13 +65,13 @@ class UserController extends Controller
     {
         if (auth()->user()->id == $id)
         {
-            return redirect('users')->with('You can\'t delete Your Self!!','');
+            return redirect('users')->with('error','You can\'t delete Your Self!!','');
         }
         Post::where('user_id' , $id)->delete();
         User::findOrFail($id)->delete();
 
         $users =   User::paginate(5);
-        return redirect('/users')->with('user deleted');
+        return redirect('/users-deatails')->with('success','user deleted');
 
     }
 

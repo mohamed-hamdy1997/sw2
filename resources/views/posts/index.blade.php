@@ -19,11 +19,11 @@
                                     <p>{{substr($post->body,0,50)}}</p>
 
                                     @if($post->post_image)
-                                        <img src="{{ URL::to('/') }}/uploaded/images/{{$post->post_image}}" class="img-thumbnail" alt="{{$post->post_image}}" style="width:50%;height:50%" >
+                                        <img src="{{ URL::to('/') }}/uploaded/images/{{$post->post_image}}" class="img-thumbnail" alt="{{$post->post_image}}" style="width: 54%;height: 170px;margin-left: 22%;" >
                                     @endif
 
                                     <span class="label label-danger">created at : {{$post->created_at}}  </span>
-                                    <span class="label label-info">  by {{$post->user->name}}</span>
+                                    <span class="label label-info">  by <a href="/user/{{$post->user->id}}/posts" style="color: #FFF"> {{$post->user->name}} </a></span>
 
                                     <a href="/posts/{{$post->id}}/view" class="float-right">View Post</a>
 

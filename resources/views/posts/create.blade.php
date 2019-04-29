@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    {{--@if ($errors->any())--}}
+        {{--<div class="alert alert-danger">--}}
+            {{--<ul>--}}
+                {{--@foreach ($errors->all() as $error)--}}
+                    {{--<li>{{ $error }}</li>--}}
+                {{--@endforeach--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+    {{--@endif--}}
 
 
     <div class=container>
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control" value="{{Request::old('title')}}">
+                <input type="text" name="title" class="form-control" placeholder="Post Title" value="{{Request::old('title')}}">
             </div>
 
             <div class="form-group">

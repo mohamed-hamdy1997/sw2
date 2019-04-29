@@ -9,7 +9,6 @@
             <table class="table table-borderless table-striped table-hover">
                 <thead>
                 <tr>
-                    {{--<th>User Image</th>--}}
                     <th>User Name</th>
                     <th>User Email</th>
                     <th>User Type</th>
