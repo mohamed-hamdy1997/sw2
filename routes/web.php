@@ -58,3 +58,7 @@ Route::get('messages', 'MessageController@fetchMessages');
 Route::post('messages', 'MessageController@sendMessage');
 Route::get('/private-messages/{user}', 'MessageController@privateMessages')->name('privateMessages');
 Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')->name('privateMessages.store');
+
+//Like
+Route::post('/like', 'LikeController@like')->name('like');
+Route::post('/dislike', 'LikeController@dislike')->name('dislike');

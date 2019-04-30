@@ -47,6 +47,45 @@
                     @endif
                     @endif
 
+                    <div class="mt-3">
+                            {{--Like--}}
+
+                            @php
+                                   $like_count=0;
+                                   $dislike_count = 0;
+                                   $like_status = "btn-secondry";
+                                   $dislike_status = "btn-secondry";
+                              @endphp
+                            @foreach($post->likes as $like)
+                                @php
+                                   if ($like->like==1){$like_count++;}
+                                   if ($like->like==0){$dislike_count++;}
+                                   if ($like->like==1 && $like->user_id == Auth::user()->id){$like_status = "btn-success";}
+                                   if ($like->like==0 && $like->user_id == Auth::user()->id){$dislike_status = "btn-danger";}
+                                @endphp
+
+                                @endforeach
+                            {{--like button --}}
+                            <button type="button" data-postid="{{$post->id}}_l" data-like="{{$like_status}}"  class="like btn {{$like_status}}">
+
+                                <span class="fa fa-thumbs-up"></span>
+                                <b>
+                                    <span class="like_count">{{$like_count}}</span>
+                                </b>
+                            </button>
+
+                            <button type="button" data-postid="{{$post->id}}_d" data-like="{{$dislike_status}}" class="dislike btn {{$dislike_status}}">
+
+                                <span class="fa fa-thumbs-down"></span>
+                                <b>
+                                    <span class="dislike_count">{{$dislike_count}}</span>
+                                </b>
+                            </button>
+
+                         
+                        </div>
+                        {{--////////////////////--}}
+
                 </div>
             </div>
 
