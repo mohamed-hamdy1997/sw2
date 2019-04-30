@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-
+    <link href="{{asset('css/google-fonts.css')}}" rel="stylesheet" type="text/css">
 {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--}}
 
 <!-- jQuery library -->
@@ -56,7 +56,7 @@
 
 
     <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
+        <div class="container" style="padding:0px" >
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -76,10 +76,23 @@
                         <li><a href="/posts">Posts</a></li>
                         <li><a href="/posts/create"  >Create post</a></li>
 
-                        @if(\auth()->user()->type == 'admin')
-                            <li><a href="/users">Users</a></li>
+                    {{--Chat--}}
+                        <!-- <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chat </a> -->
+
+                            <!-- <ul class="dropdown-menu" role="menu" style="position: absolute !important;"> -->
+                                <!-- <li > <a href="{{route('home')}}"> Group </a></li> -->
+                                <li> <a href="{{route('private')}}"> Chat </a></li>
+
+                            <!-- </ul> -->
+                        <!-- </li> -->
+
+                            @if(\auth()->user()->type == 'admin')
+                            <li><a href="/users-deatails">Users</a></li>
                             <li><a href="/adduser">Add User</a></li>
                         @endif
+
+
                     @endif
 
                 </ul>

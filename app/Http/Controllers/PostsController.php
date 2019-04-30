@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -52,14 +53,13 @@ class PostsController extends Controller
                 'title' => 'required',
                 'body' => 'required',
                 'post_image' => 'image|nullable|max:6024 | mimes:jpg,png,jpeg,svg',
-                'post_video' => 'nullable | max:20000 |mimes:mp4,3pg,flv,mkv,weba',
-                'post_file' => 'nullable|max:8024 | mimes:pdf,txt,docx,doc,pptx,ppt,xls '
+                'post_video' => 'nullable |max:20000|mimes:mp4,3pg,flv,mkv,weba',
+                'post_file' => 'nullable|max:8024 |mimes:pdf,txt,docx,doc,pptx,ppt,xls'
             ]);
 
 //upload image
             if ($request->hasFile('post_image')) {
 
-//            foreach ($request->post_image as $post_image) {
 
                 $filenameWithExtention = $request->file('post_image')->getClientOriginalName();
                 $fileName = pathinfo($filenameWithExtention, PATHINFO_FILENAME);
@@ -107,18 +107,12 @@ class PostsController extends Controller
             $post->post_video = $fileNameStoreVideo;
             $post->post_file = $fileNameStoreFile;
             $post->save();
-
             return redirect('/posts')->with('success', 'Done successfully');
         }else{
             return redirect('/login')->with('Unauthorized' , 'Please Login First');
         }
     }
-
-//
-//    public function show(Post $post)
-//    {
-//        return new PostResource($post);
-//    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -210,7 +204,6 @@ class PostsController extends Controller
 //            $fileNameStoreImage = null;
             }
 
-//        $post =   Post::findOrFail($id);
             $post->title = $request->input('title');
             $post->body = $request->input('body');
             $post->post_image = $fileNameStoreImage;
@@ -218,7 +211,7 @@ class PostsController extends Controller
             $post->post_file = $fileNameStoreFile;
             $post->update();
 
-            return redirect('/posts')->with('success', 'Done successfully');
+            return redirect('/posts/'.$post->id . '/view')->with('success', 'Done successfully');
         }else{
             return redirect('/posts')->with('error','Unauthorized');
         }
@@ -257,10 +250,15 @@ class PostsController extends Controller
         }
 
     }
+
+
     //    view post
     public function viewPost($id)
     {
-        $post = Post::findOrFail($id);
+     $post = Post::findOrFail($id);
+
         return view('posts/viewPost' , compact('post'));
     }
+
+
 }

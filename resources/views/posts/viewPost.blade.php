@@ -28,7 +28,9 @@
 
                         @if($post->post_file)
                             <a href="{{ URL::to('/') }}/uploaded/files/{{$post->post_file}}" class="m-auto d-block w-75">{{$post->post_file}}</a>
-                        @endif
+                            {{--<object data="{{ URL::to('/') }}/uploaded/files/{{$post->post_file}}" type="application/pdf" width="100%" height="700px" style="margin-top: 100px;">{{$post->post_file}}</object>--}}
+                          @endif
+
                     </div>
 
                     <div class="text-center" style="  display:block">
