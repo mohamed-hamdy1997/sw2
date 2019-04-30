@@ -151,5 +151,11 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ url('/js/like.js') }}"></script>
+<script type="text/javascript">
+    var url= "/like";
+    var url_dis= "/dislike";
+    var token = "{{Session::token()}}";
+</script>
 </body>
 </html>
