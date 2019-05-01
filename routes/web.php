@@ -51,6 +51,7 @@ Route::get('/posts/{id}/view', 'PostsController@viewPost');
 //comment
 
 Route::post('/posts/{id}/addComment', 'CommentController@addComment');
+Route::get('/posts/{id}/destroyComment', 'PostsController@destroyComment');
 
 
 // chat

@@ -27,4 +27,13 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
+    //delete comment
+
+    public function destroyComment($id){
+        $comment = Comment::findOrFail($id);
+        $pid = $comment->post_id;
+        $comment->delete();
+        return redirect("/posts/".$pid.'/view');
+    }
+
 }

@@ -96,7 +96,7 @@
                                     @endif
                                     <a href="/user/{{$comment->user_id}}/posts">{{$comment->user->name}} </a>:
                                     @if((auth()->user()->id == $post->user_id) || (auth()->user()->id == $comment->user_id) || (auth()->user()->type == 'admin') )
-                                        <a href="#" class="float-right" onclick="if(!confirm('Do you Delete This Comment ?')) return false"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ action('PostsController@destroyComment',$comment->id),'/destroyComment' }}" class="float-right" onclick="if(!confirm('Do you Delete This Comment ?')) return false"><i class="fa fa-trash"></i></a>
                                     @endif
                                 </h4>
                                 <p>{{$comment->comment_body}}</p>
