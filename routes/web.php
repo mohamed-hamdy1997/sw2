@@ -48,6 +48,11 @@ Route::get('/posts/{id}/destroy', 'PostsController@destroy');
 
 Route::get('/posts/{id}/view', 'PostsController@viewPost');
 
+//comment
+
+Route::post('/posts/{id}/addComment', 'CommentController@addComment');
+
+
 // chat
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -62,3 +67,4 @@ Route::post('/private-messages/{user}', 'MessageController@sendPrivateMessage')-
 //Like
 Route::post('/like', 'LikeController@like')->name('like');
 Route::post('/dislike', 'LikeController@dislike')->name('dislike');
+

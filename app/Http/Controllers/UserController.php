@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Http\Resources\User\UserCollection;
 use App\Http\Resources\User\UserResource;
+use App\Like;
 use App\User;
 use App\Post;
 use Tymon\JWTAuth\JWTAuth;
@@ -65,13 +67,20 @@ class UserController extends Controller
     {
         if (auth()->user()->id == $id)
         {
-            return redirect('users')->with('error','You can\'t delete Your Self!!','');
+            return redirect('users-deatails')->with('error','You can\'t delete Your Self!!','');
         }
+        if (auth()->user()->type == 'admin')
+        {
         Post::where('user_id' , $id)->delete();
+        Comment::where('user_id' , $id)->delete();
+        Like::where('user_id' , $id)->delete();
         User::findOrFail($id)->delete();
 
         $users =   User::paginate(5);
         return redirect('/users-deatails')->with('success','user deleted');
+        }else{
+            return with('error','Unauthorized');
+        }
 
     }
 
