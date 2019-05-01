@@ -44,9 +44,10 @@
                                     <a href="{{ action('PostsController@destroy',$post->id),'/destroy' }}"onclick="if(!confirm('Do you Delete This Post ?')) return false"><i class="fa fa-trash"></i></a>
                                 </div>
                     </div>
-                    @endif
-                    @endif
-
+                             @endif
+                        @endif
+                </div>
+                <hr>
                     <div class="mt-3">
                             {{--Like--}}
 
@@ -86,6 +87,7 @@
 
 
                     </div>
+                <hr>
                     {{--////////////////////--}}
                     <div class="mt-3 text-left">
                         @foreach($post->comments as $comment)
