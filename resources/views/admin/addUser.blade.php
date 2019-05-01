@@ -1,21 +1,29 @@
-+@extends('layouts.app')
+@extends('layouts.app')
 @section('content')
     <div class="container">
-
+        @if(count($errors)>0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <h2>Add User</h2>
 
-        <form action="/" method="post" enctype="multipart/form-data">
+        <form action="/adduser" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
 
             <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" name="name" class="form-control" required >
+                <input type="text" name="name" class="form-control" required value="{{Request::old('name')}}">
             </div>
 
             <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" name="email" class="form-control" required >
+                <input type="email" name="email" class="form-control" required value="{{Request::old('email')}}">
             </div>
 
             <div class="form-group">
@@ -39,4 +47,4 @@
             <input type="submit" class="btn btn-primary btn-lg" value="Add">
         </form>
     </div>
-    @endsection
+@endsection
