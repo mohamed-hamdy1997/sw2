@@ -27,6 +27,8 @@ Route::get('/adduser', 'UserController@viewAdd');
 Route::post('/adduser', 'UserController@addUser');
 Route::get('users/{id}', 'UserController@destroy');
 Route::get('user/{id}/posts', 'UserController@userPosts');
+Route::get('editprofile/{id}', 'UserController@showUpdateProfilePage');
+Route::post('editprofile/{id}', 'UserController@updateProfile');
 
 
 //posts

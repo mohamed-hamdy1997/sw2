@@ -97,4 +97,49 @@ class UserController extends Controller
         return view('/posts.userPosts' , compact('posts'));
     }
 
+    //update profile
+
+    public function showUpdateProfilePage($id){
+        $user = User::findOrFail($id);
+        return view('admin.editProfile',compact('user'));
+
+    }
+    public function updateProfile(Request $request , $id){
+
+        $this->validate($request ,[
+            'name' => 'required |string | max:50 | min:5',
+            'email' => 'required |string|email|max:255',
+            'user_image' => 'image|nullable|max:1024 | mimes:jpg,png,jpeg,svg',
+        ]);
+
+        if ($request->input('password')) {
+            $this->validate($request, [
+                'password' => 'required|confirmed|string|min:6',
+                'password_confirmation' => 'sometimes|required_with:password'
+            ]);
+        }
+
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        if ($request->input('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+        $user->email = $request->input('email');
+        //upload image
+        if ($request->hasFile('user_image')) {
+
+            $filenameWithExtention = $request->file('user_image')->getClientOriginalName();
+            $fileName = pathinfo($filenameWithExtention, PATHINFO_FILENAME);
+            $extension = $request->file('user_image')->getClientOriginalExtension();
+            $fileNameStoreImage = $fileName . '_' . time() . '.' . $extension;
+
+            $path = $request->file('user_image')->move(base_path() . '/public/uploaded/profile_images/', $fileNameStoreImage);
+            $user->user_image = $fileNameStoreImage;
+        }
+        $user->update();
+
+        return redirect('/')->with('success','User Updated');
+
+    }
+
 }
