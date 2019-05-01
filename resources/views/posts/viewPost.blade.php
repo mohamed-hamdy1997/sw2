@@ -106,6 +106,20 @@
                             <hr>
                         @endforeach
                     </div>
+                    <div>
+
+                        <form action="/posts/{{$post->id}}/addComment" method="post">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="usr">Add Comment</label>
+                                <textarea name="body" id="addComment" cols="50" rows="2" class="form-control" required maxlength="100"></textarea>
+                            </div>
+
+                            <br>
+
+                            <input type="submit" value="Add Comment" class="btn btn-primary">
+                        </form>
+                    </div>
                     {{--/////////////////////--}}
 
                 </div>

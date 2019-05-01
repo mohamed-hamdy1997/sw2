@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Like;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -241,7 +242,9 @@ class PostsController extends Controller
                 Storage::delete('/public/uploaded/files/'.$post->post_file);
 
             }
-            Comment::all()->where('post_id',$id)->delete();
+
+            Comment::where('post_id',$id)->delete();
+            Like::where('post_id',$id)->delete();
 
             $post->delete() ;
 

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\User\UserCollection;
-use App\Http\Resources\User\UserResource;
+
 use App\Like;
 use App\User;
 use App\Post;
-use Tymon\JWTAuth\JWTAuth;
-use JWTAuthException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
