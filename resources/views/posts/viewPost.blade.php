@@ -82,9 +82,31 @@
                                 </b>
                             </button>
 
-                         
-                        </div>
-                        {{--////////////////////--}}
+                        <button class="btn btn-secondary btn-sm ml-5"><a href="#addComment" class="text-white"> Add Comment </a></button>
+
+
+                    </div>
+                    {{--////////////////////--}}
+                    <div class="mt-3 text-left">
+                        @foreach($post->comments as $comment)
+                            <div class=" bg-light p-3 rounded-12">
+                                <h4>
+                                    @if(Auth::user()->user_image)
+                                        <img src="{{ URL::to('/') }}/uploaded/profile_images/{{$comment->user->user_image}}" class="img-thumbnail mr-1 p-0" style="max-width: 27px;max-height: 27px;padding: 1px !important;" >
+                                    @endif
+                                    <a href="/user/{{$comment->user_id}}/posts">{{$comment->user->name}} </a>:
+                                    @if((auth()->user()->id == $post->user_id) || (auth()->user()->id == $comment->user_id) || (auth()->user()->type == 'admin') )
+                                        <a href="#" class="float-right" onclick="if(!confirm('Do you Delete This Comment ?')) return false"><i class="fa fa-trash"></i></a>
+                                    @endif
+                                </h4>
+                                <p>{{$comment->comment_body}}</p>
+                                <span class="text-secondary mark">{{$comment->created_at}}</span>
+
+                            </div>
+                            <hr>
+                        @endforeach
+                    </div>
+                    {{--/////////////////////--}}
 
                 </div>
             </div>
