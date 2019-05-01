@@ -125,7 +125,7 @@ class RegisterController extends Controller
         if($auth_user) {
             $auth_user->active = '1';
             $auth_user->token = 'NULL';
-            $auth_user->save();
+            $auth_user->update();
             return redirect('login')->with('success', 'Your account is activated. You can login now.');
         } else {
             return redirect('login')->with('error', 'Invalid activation key.');

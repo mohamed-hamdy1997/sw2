@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Http\Resources\User\UserCollection;
 use App\Http\Resources\User\UserResource;
 use App\Like;
@@ -14,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -25,12 +25,13 @@ class UserController extends Controller
 
     public function index()
     {
-        if(auth()->user()->type == 'admin') {
-            $users = User::orderBy('created_at', 'desc')->paginate(5);
-            return view('/admin/users', compact('users'));
-        }else{
-            return redirect()->back()->with('error', 'Un Authenticated');
-        }
+        $users =   User::orderBy('created_at','desc')->paginate(5);
+        return  view('/admin/users',compact('users'));
+
+    }
+
+    public function getToken() {
+        return hash_hmac('sha256', str_random(40), config('app.key'));
     }
 
     public function addUser(Request $request)
@@ -51,11 +52,24 @@ class UserController extends Controller
             $user->email = $request->input('email');
             $user->type = $request->input('user-type');
             $user->user_image ="profile_default_image.jpg";
+
+            // send mail activation
+            $token = $this->getToken();
+            $request->request->add(['token' => $token]);
+            $user->token= $token;
+            $data = array('name' => $request['name'], 'email' => $request['email'],  'activation_link' => url('/activation/' . $token));
+
+            Mail::send('emails.email', $data, function($message) use ($data) {
+                $message->to($data['email'])
+                    ->subject('Activate Your Account');
+                $message->from('mohamedhamdy.o1997@gmail.com');
+            });
+
             $user->save();
 
             $users =   User::paginate(5);
 //            return view('admin/users' , compact('users'))->with('User Added');
-            return redirect('/users-deatails')->with('success','User Added');
+            return redirect('/users')->with('success','User Added');
         }else{
             return with('error','Unauthorized');
         }
@@ -67,20 +81,14 @@ class UserController extends Controller
     {
         if (auth()->user()->id == $id)
         {
-            return redirect('users-deatails')->with('error','You can\'t delete Your Self!!','');
+            return redirect('users')->with('You can\'t delete Your Self!!','');
         }
-        if (auth()->user()->type == 'admin')
-        {
         Post::where('user_id' , $id)->delete();
-        Comment::where('user_id' , $id)->delete();
         Like::where('user_id' , $id)->delete();
         User::findOrFail($id)->delete();
 
         $users =   User::paginate(5);
-        return redirect('/users-deatails')->with('success','user deleted');
-        }else{
-            return with('error','Unauthorized');
-        }
+        return redirect('/users')->with('success','user deleted');
 
     }
 
@@ -90,11 +98,11 @@ class UserController extends Controller
         return view('admin/addUser');
     }
 
-    //    view user's posts
+//    view user's posts
     public function userPosts($id)
     {
         $posts =   Post::orderBy('created_at','desc')->where('user_id',$id)->paginate(5);
-        return view('/posts.userPosts' , compact('posts'));
+        return view('/posts.index' , compact('posts'));
     }
 
     //update profile
