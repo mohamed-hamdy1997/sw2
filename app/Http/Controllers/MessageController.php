@@ -58,7 +58,7 @@ class MessageController extends Controller
     public function sendPrivateMessage(Request $request,User $user)
     {
         if(request()->has('file')){
-            $filename = request('file')->store('chat');
+            $filename =request('file')->store('chat').'';
             $message=Message::create([
                 'user_id' => request()->user()->id,
                 'image' => $filename,

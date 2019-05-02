@@ -48,7 +48,7 @@
                         @endif
                 </div>
                 <hr>
-                    <div class="mt-3">
+                    <div class="mt-3 m-4">
                             {{--Like--}}
 
                             @php
@@ -87,7 +87,6 @@
 
 
                     </div>
-                <hr>
                     {{--////////////////////--}}
                     <div class="mt-3 text-left">
                         @foreach($post->comments as $comment)
@@ -98,7 +97,7 @@
                                     @endif
                                     <a href="/user/{{$comment->user_id}}/posts">{{$comment->user->name}} </a>:
                                     @if((auth()->user()->id == $post->user_id) || (auth()->user()->id == $comment->user_id) || (auth()->user()->type == 'admin') )
-                                            <a href="{{ action('PostsController@destroyComment',$comment->id),'/destroyComment' }}" class="float-right" onclick="if(!confirm('Do you Delete This Comment ?')) return false"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ action('CommentController@destroyComment',$comment->id),'/destroyComment' }}" class="float-right" onclick="if(!confirm('Do you Delete This Comment ?')) return false"><i class="fa fa-trash"></i></a>
                                     @endif
                                 </h4>
                                 <p>{{$comment->comment_body}}</p>
@@ -112,14 +111,15 @@
 
                         <form action="/posts/{{$post->id}}/addComment" method="post">
                             {{csrf_field()}}
-                            <div class="form-group">
+                            <div class="form-group m-lg-4">
                                 <label for="usr">Add Comment</label>
                                 <textarea name="body" id="addComment" cols="50" rows="2" class="form-control" required maxlength="100"></textarea>
+                                <br>
+
+                                <input type="submit" value="Add Comment" class="btn btn-primary">
                             </div>
 
-                            <br>
 
-                            <input type="submit" value="Add Comment" class="btn btn-primary">
                         </form>
                     </div>
                     {{--/////////////////////--}}

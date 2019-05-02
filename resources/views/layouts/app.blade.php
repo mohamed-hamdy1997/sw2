@@ -115,6 +115,9 @@
                             <ul class="dropdown-menu" role="menu" style="position: absolute !important;">
 
                                 <li>
+                                    <a href="/editprofile/{{auth()->user()->id}}">Edit Profile</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
